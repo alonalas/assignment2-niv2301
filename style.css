@@ -1,0 +1,83 @@
+
+
+body{
+    zoom: 0.85;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: absolute;
+    background-size: cover;
+    
+}
+
+h1 {
+    font-family: "Lucida", "Brush Script MT", cursive;
+    border-radius: 20px;
+    font-size:  40px;
+}
+.font1{
+    font-family: "Lucida", "Brush Script MT", monospace;
+    font-size:  50px;
+
+  }
+
+h3 {
+    font-family: "Lucida", cursive, sans-serif;
+    border-radius: 20px;
+    font-size:  20px;
+}
+
+h2 {
+    font-family: "Lucida", cursive, sans-serif;
+    border-radius: 20px;
+    font-size:  30px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: cornflowerblue;
+}
+
+.home {
+    text-decoration: none;
+    color: rgb(82, 82, 109);
+    text-align: center;
+    display: block;
+    padding: 25px 22px;
+    font-size: 23px;
+    font-weight: bold;
+
+}
+
+li {
+    float: left;
+    
+}
+
+li a {
+    text-decoration: none;
+    color: rgb(82, 82, 109);
+    text-align: center;
+    display: block;
+    padding: 25px 22px;
+    font-size: 23px;
+    font-weight: bold;
+    
+}
+
+li a:hover {
+    background-color: rgb(184, 134, 134);
+}
+
+.navb {
+  width: 100%;  
+  top: 0;
+  position: fixed;
+}
+
+.navb + .content {
+  padding-top: 70px;
+}
+
+
