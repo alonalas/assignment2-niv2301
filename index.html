@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
-		<link rel="stylesheet" type="text/css" href="slider.css"/>
+		<link rel="stylesheet" type="text/css" href="settings.css"/>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./register.js"></script>
+		<script type="text/javascript" src="./settings.js"></script>
 
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -64,14 +65,29 @@
 				</div>
 			</div>
 
-			<div id = "settings" style="display: none;">
-				<h2> Game Settings</h2>
+			<form id = "settings" style="display: none; width: auto;">
+				<h2 align="center"> Game Settings</h2>
 				<br>
-				<!--time setting-->
-
 				<div>
+
+					<div class="box_keybtn" align="center">
+						<h3 align="left"> select key directions: </h3>
+						<br>
+						<img for="up" src="images1/up.png" style= "align-items: center;">
+						<input type="button" class="keyBtn" id="up" name="up" value="up">
+			  
+						<img for="down" src="images1/down.png">
+						<input type="button" class="keyBtn" name="down" id="down" value="down" >
+			  
+						<img for="left" src="images1/left.png">
+						<input type="button" class="keyBtn" name="left" id="left" value="left">
+			  
+						<img for="right" src="images1/right.png">
+						<input type="button" class="keyBtn" name="right" id="right" value="right" >
+					</div>
+					<br>
 					<div>
-						<h4 style ="float: left;";>Select time in seconds: </h4>
+						<h3 style ="float: left;";>Select time in seconds: </h3>
 						<span id="rangeValue1">60</span>
 						<Input class="range" type="range" value="60" min="60" max="1000" onChange="rangeSlide1(this.value)" onmousemove="rangeSlide1(this.value)">
 					</div>
@@ -79,7 +95,7 @@
 				</br>
 				</br>
 					<div>
-						<h4 style ="float: left;";>Select number of monsters: </h4>
+						<h3 style ="float: left;";>Select number of monsters: </h3>
 						<span id="rangeValue2">1</span>
 						<Input class="range" type="range" value="1" min="1" max="4" onChange="rangeSlide2(this.value)" onmousemove="rangeSlide2(this.value)">
 					</div>
@@ -87,7 +103,7 @@
 			</br>
 			</br>
 					<div>
-						<h4 style ="float: left;";>Select number of balls: </h4>
+						<h3 style ="float: left;";>Select number of balls: </h3>
 						<span id="rangeValue3">50</span>
 						<Input class="range" type="range" value="50" min="50" max="90" onChange="rangeSlide3(this.value)" onmousemove="rangeSlide3(this.value)">
 					</div>
@@ -104,15 +120,14 @@
 					}
 				</script>
 
-
-
-
-
-				
 				<br>
 
-
-			</div>
+				<div id="submitButtons">
+					<button type="submit" class="submit" onclick="checkSetting()" value="Play" >Play</button> 
+					<button type="button" class="randomSet" onclick="randomSettings()" value="Random" >Random</button> 
+				</div>
+				
+			</form>
 	
 			
 			<form id="signup" action="" method="post" name="signup" style="display: none;">
