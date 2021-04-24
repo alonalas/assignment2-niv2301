@@ -2,9 +2,19 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" type="text/css" href="slider.css"/>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<link rel="shortcut icon" href="images1/logo.jpg">
 		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./register.js"></script>
+
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="shortcut icon" href="images1/logo.png">		
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+   	    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+
 		<title>Pacman</title>
 	</head>
 
@@ -12,36 +22,142 @@
 		<header>
 			<div id="navbar" href="javascript:void(0)">
 				<ul>
-					<!--aa-->
-					<!--14:37-->
-					<li><a  href="#home">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li style="margin-left: 800px;" class="home">Alona Lasry & Niv Meir</li>
-					<li style="float:right" ><img src="images1/logo.png" width="180" height="100" ></li>
+				<li id="user"><a id="current_user">Hello</a></li>
+				<li><a  href="#" onclick="about()" id="about">About</a></li>
+				<li><a  href="#" onclick="register()" id="reg_tab" name="reg_tab">Register</a></li>		
+				<li><a  href="#" onclick="login()" id="log_tab" name="log_tab">Login</a></li>		
+				<li><a  href="#" onclick="logout()" id="logout" name="logout" style="display: none;">Log Out</a></li>		
+				<li style="margin-left: 800px;" class="home">Alona Lasry & Niv Meir</li>
+				<li style="float:right" ><img src="images1/logo.png" width="180" height="100" ></li>
 				</ul>
+			</div>	
+			<div id="myModal" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+					<span class="close">&times;</span>
+					<h2>Pacman</h2>
+					</div>
+					<div class="modal-body">
+					<p>Developed by Alona Lasry & Niv Meir</p>
+					<p>JQuery Plugins: jquery version 3.4.1</p>
+					<p>Difficulties: ....</p>
+					</div>
+					<div class="modal-footer">
+					</div>
+				</div>
 			</div>
-			<h2 align="center"> Our Pacman</h2>
+			<h2 align="center"> Pacman</h2>
 			
 		</header>
 
-		<div id="content" style="width:100vw;"> 
-			<div id="score">
-				<label for="lblScore">SCORE:</label>
-				<input id="lblScore" type="text" />
-			</div>
-			<div id="time">
-				<label for="lblTime">TIME:</label>
-				<input id="lblTime" type="text" />
-			</div>
+		<div class="container">
+
 			<div id="game" style="display: none;">
 				<canvas id="canvas" height="600" width="600"></canvas>
+				<div id="score">
+					<label for="lblScore">SCORE:</label>
+					<input id="lblScore" type="text" />
+				</div>
+				<div id="time">
+					<label for="lblTime">TIME:</label>
+					<input id="lblTime" type="text" />
+				</div>
 			</div>
-			<input type="submit" value="Send">
-			<input type="reset" value="Reset">
-			<!--ddddd-->	
-			<!--14:24-->	
-			<!--?????-->
-			<!--,,,,-->
-			<!--14:54-->
+
+			<div id = "settings" style="display: none;">
+				<h2> Game Settings</h2>
+				<br>
+				<!--time setting-->
+
+				<div>
+					<div>
+						<h4 style ="float: left;";>Select time in seconds: </h4>
+						<span id="rangeValue1">60</span>
+						<Input class="range" type="range" value="60" min="60" max="1000" onChange="rangeSlide1(this.value)" onmousemove="rangeSlide1(this.value)">
+					</div>
+				</br>
+				</br>
+				</br>
+					<div>
+						<h4 style ="float: left;";>Select number of monsters: </h4>
+						<span id="rangeValue2">1</span>
+						<Input class="range" type="range" value="1" min="1" max="4" onChange="rangeSlide2(this.value)" onmousemove="rangeSlide2(this.value)">
+					</div>
+				</br>
+			</br>
+			</br>
+					<div>
+						<h4 style ="float: left;";>Select number of balls: </h4>
+						<span id="rangeValue3">50</span>
+						<Input class="range" type="range" value="50" min="50" max="90" onChange="rangeSlide3(this.value)" onmousemove="rangeSlide3(this.value)">
+					</div>
+				</div>
+				<script type="text/javascript">
+					function rangeSlide1(value) {
+						document.getElementById('rangeValue1').innerHTML = value;
+					}
+					function rangeSlide2(value) {
+						document.getElementById('rangeValue2').innerHTML = value;
+					}
+					function rangeSlide3(value) {
+						document.getElementById('rangeValue3').innerHTML = value;
+					}
+				</script>
+
+
+
+
+
+				
+				<br>
+
+
+			</div>
+	
+			
+			<form id="signup" action="" method="post" name="signup" style="display: none;">
+				<div class="header">
+					<h3>Sign Up</h3>
+					<p>Please fill out this form</p>
+				</div>
+				<div class="inputs">
+				  <input type="text" id="userName" name="userName" placeholder="UserName" autofocus>
+				  <input type="text" id="fullName" name="fullName" placeholder="Full Name" autofocus>
+				  <input type="text" id="email" name="email" placeholder="Email" autofocus>
+				  <input type="password" id="password" name="password" placeholder="Password" autofocus>
+				  <input type="date" placeholder="Date" id="datepicker" name="datepicker" autofocus>
+				  <input class="submit" type="submit" value="SUBMIT" id="submit">
+			</div>
+
+			</form>
+
+			<form id="login" style="display: none;">
+				<div class="header">
+					<h3>Login</h3>
+					<p>Please fill out this form</p>
+				</div>
+				<div class="inputs">
+				  <input type="Text" id="logUsername" name="logUsername" placeholder="Username" autofocus />
+					<input type="password" id="logPassword" name="logPassword" placeholder="Password" />	
+					
+					<a id="submit" onclick="authenticate()" href="#">LOGIN</a>
+				</div>
+			</form>
+			
+			<div id="content" style="width:30vw; margin: auto;"> 
+				<input type="button" id="reg_btn" name="reg_btn" onclick="register()" value="Register">
+				<input type="button" onclick="login()" id="log_btn" name="log_btn" value="Login">
+			</div>
+
+
+		</div>
+
 	</body>
+	<br>
+	<br>
+	<footer id="footer">
+		<p>PacMan</p>
+		<p>For more information: nivq@post.bgu.ac.il, alonalas@post.bgu.ac.il</p>
+	
+	</footer>
 </html>
