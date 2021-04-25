@@ -33,7 +33,7 @@
 				<li style="margin-left: 800px;" class="home">Alona Lasry & Niv Meir</li>
 				<li style="float:right" ><img src="images1/logo.png" width="180" height="100" ></li>
 				</ul>
-			</div>	
+			</div>		
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -49,7 +49,10 @@
 					</div>
 				</div>
 			</div>
-			<h2 align="center"> Pacman</h2>
+			<div id = "imageLogo" align = "center">
+				<img src="images1/title.png">
+			</div>
+			
 			
 		</header>
 
@@ -72,7 +75,7 @@
 				<br>
 				<div>
 					<div class="box_keybtn" align="center">
-						<h3 align="left"> select key directions: </h3>
+						<h3 align="center"> select key directions: </h3>
 						<br>
 						<div>
 						<img for="up" src="images1/up.png" style= "align-items: center;">
@@ -109,6 +112,7 @@
 						<span id="rangeValue1">60</span>
 						<Input class="range" type="range" value="60" min="60" max="1000" onChange="rangeSlide1(this.value)" onmousemove="rangeSlide1(this.value)">
 					</div>
+					
 				</br>
 				</br>
 				</br>
@@ -168,26 +172,13 @@
 
 				</div>
 				<br>
-				<!-- <div align=center>
-					<div id="color_front">
-						<input type='color' value='#fefefe' class='bar' id='colour' style="float: left;width: 33%;">
-					</div>
-
-					<div id="color_front">
-						<input type='color' value='#2b00ff' class='bar' id='colour' style="float: left;width: 33%;">
-					</div>
-
-					<div id="color_front">
-						<input type='color' value='#2b00ff' class='bar' id='colour' style="float: leftwidth: 33%;">
-					</div>
-				</div> -->
 				<br>
-
-				<div id="submitButtons">
-					<button type="submit" class="submit" onclick="checkSetting()" value="Play" >Play</button> 
-					<button type="button" class="randomSet" onclick="randomSettings()" value="Random" >Random</button> 
+				<br>
+				<br>
+				<div id="submitButtons" align = "center">
+					<button type="submit" class="example_b" onclick="checkSetting()" value="Play" >Play</button> 
+					<button type="button" class="example_b" onclick="randomSettings()" value="Random" >Random</button> 
 				</div>
-				
 			</form>
 	
 			

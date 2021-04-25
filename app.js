@@ -9,12 +9,10 @@ var interval;
 var numBalls;
 var time;
 var monsters;
-var upKey;
-var downKey;
-var rightKey;
-var leftKey;
-
-
+var upKey = 38;
+var downKey = 40;
+var rightKey = 39;
+var leftKey = 37;
 
 function game(numBalls1,time1,monsters1, upKey1, downKey1, rightKey1, leftKey1) {
 
@@ -117,16 +115,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[upKey]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[downKey]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[leftKey]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[rightKey]) {
 		return 4;
 	}
 }
