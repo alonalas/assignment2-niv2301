@@ -1,12 +1,9 @@
-
-
 body{
     zoom: 0.85;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: absolute;
     background-size: cover;
-    
 }
 
 h1 {
@@ -47,7 +44,6 @@ ul {
     padding: 25px 22px;
     font-size: 23px;
     font-weight: bold;
-
 }
 
 li {
@@ -63,7 +59,6 @@ li a {
     padding: 25px 22px;
     font-size: 23px;
     font-weight: bold;
-    
 }
 
 li a:hover {
@@ -499,4 +494,3 @@ input:-moz-placeholder {
     color: white;
     text-align: center;
   }
-  
