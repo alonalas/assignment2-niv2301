@@ -6,6 +6,40 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var numBalls;
+var time;
+var monsters;
+var upKey;
+var downKey;
+var rightKey;
+var leftKey;
+
+
+
+function game(numBalls1,time1,monsters1, upKey1, downKey1, rightKey1, leftKey1) {
+
+    document.getElementById("signup").style.display = "none";
+    document.getElementById("login").style.display = "none";
+    document.getElementById("game").style.display = "block";
+    document.getElementById("log_btn").style.display = "none";
+    document.getElementById("reg_btn").style.display = "none";
+    document.getElementById("reg_tab").style.display = "none";
+    document.getElementById("log_tab").style.display = "none";
+    document.getElementById("logout").style.display = "block";
+    document.getElementById("settings").style.display = "none";
+
+	numBalls = numBalls1;
+	time = time1;
+	monsters = monsters1;
+	upKey = upKey1;
+	downKey = downKey1;
+	rightKey = rightKey1;
+	leftKey = leftKey1;
+	Start();
+
+}
+
+
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");

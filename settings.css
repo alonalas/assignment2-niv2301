@@ -36,3 +36,9 @@
   box-shadow: -407px 0 0 400px rgb(82, 82, 109);
 }
 
+input[type=color] {
+  
+  width: 10%;
+  padding: 2%;
+}
+

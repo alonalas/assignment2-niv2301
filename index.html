@@ -4,6 +4,8 @@
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="stylesheet" type="text/css" href="settings.css"/>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./register.js"></script>
 		<script type="text/javascript" src="./settings.js"></script>
@@ -65,25 +67,41 @@
 				</div>
 			</div>
 
-			<form id = "settings" style="display: none; width: auto;">
+			<form id = "settings" action="" method="post" name="settings" style="display: none; width: auto;">
 				<h2 align="center"> Game Settings</h2>
 				<br>
 				<div>
-
 					<div class="box_keybtn" align="center">
 						<h3 align="left"> select key directions: </h3>
 						<br>
+						<div>
 						<img for="up" src="images1/up.png" style= "align-items: center;">
-						<input type="button" class="keyBtn" id="up" name="up" value="up">
-			  
-						<img for="down" src="images1/down.png">
-						<input type="button" class="keyBtn" name="down" id="down" value="down" >
-			  
-						<img for="left" src="images1/left.png">
-						<input type="button" class="keyBtn" name="left" id="left" value="left">
-			  
-						<img for="right" src="images1/right.png">
-						<input type="button" class="keyBtn" name="right" id="right" value="right" >
+						<br>
+							<output id="upB">38</output>
+							<input maxlength="1" type="text" id="upButton" name="upButton" class="input"
+							onkeydown="updateKey(event,'up')"  /> 
+						</div>
+						<div>
+							<img for="down" src="images1/down.png">
+							<br>
+							<output id="downB">40</output>
+							<input maxlength="1" type="text" id="downButton" name="downButton" class="input"
+								onkeydown="updateKey(event,'down')"/>
+						</div>
+						<div>
+							<img for="left" src="images1/left.png">
+							<br>
+							<output id="leftB">37</output>
+							<input maxlength="1" type="text" id="leftButton" name="leftButton" class="input"
+								onkeydown="updateKey(event,'left')" />
+						</div>
+						<div>
+							<img for="right" src="images1/right.png">
+							<br>
+							<output id="rightB">39</output>
+							<input maxlength="1" type="text" id="rightButton" name="rightButton" class="input"
+								onkeydown="updateKey(event,'right')" />
+						</div>
 					</div>
 					<br>
 					<div>
@@ -120,6 +138,49 @@
 					}
 				</script>
 
+
+				<br>
+				<br>
+				<h3 align="center">Choose colors of balls: </h3>
+				<br>
+				<br>
+				<div align=center> 
+					<div>
+						<h4 style ="float: left; width: 33%;";>5 points</h4>
+							<input id="5color" type='color' value='#ff0000' class='colour' style="float: left;width: 33%;">
+					</div>
+					<br>
+					<br>
+
+					<div >
+						<h4 style ="float: left; width: 33%;";>15 points</h4>
+							<input id="15color" type='color' value='#2b00ff' class='colour' style="float: left;width: 33%;">
+					</div>
+					<br>
+					<br>
+
+					<div>
+						<h4 style ="float: left; width: 33%;";>25 points</h4>
+						<div class="color_front" id="ball3">
+							<input id="25color" type='color' value='#04ff00' class='colour' style="float: left;width: 33%;">
+						</div>
+					</div>
+
+				</div>
+				<br>
+				<!-- <div align=center>
+					<div id="color_front">
+						<input type='color' value='#fefefe' class='bar' id='colour' style="float: left;width: 33%;">
+					</div>
+
+					<div id="color_front">
+						<input type='color' value='#2b00ff' class='bar' id='colour' style="float: left;width: 33%;">
+					</div>
+
+					<div id="color_front">
+						<input type='color' value='#2b00ff' class='bar' id='colour' style="float: leftwidth: 33%;">
+					</div>
+				</div> -->
 				<br>
 
 				<div id="submitButtons">
