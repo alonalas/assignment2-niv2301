@@ -55,74 +55,74 @@
 				<img src="images1/title.png">
 			</div>
 		</header>
-			<!-- <div class="parent" id="game" align="left" style="display: none;">
-				<canvas id="canvas"></canvas>
-			</div>
-			<div class="element" align="right">
-				<h3>show here settings</h3>
-				<div id="time">
-					<label for="lblTime">TIME:</label>
-					<input id="lblTime" type="text" />
-				</div>
-				<div id="score">
-					<label for="lblScore">SCORE:</label>
-					<input id="lblScore" type="text" />
-				</div>
-			</div> -->
-
-			<!-- <div class="gameBoard">
-
-				<div class="gameChild" id = "game">
-				<div class="gameChild">
-					<canvas id="canvas" height="600" width="600"></canvas>
-				</div>
-				
-				<div class="gameChild">
-					<div id="score">
-						<label for="lblScore">SCORE:</label>
-						<input id="lblScore" type="text" />
-					</div>
-					<div id="time">
-						<label for="lblTime">TIME:</label>
-						<input id="lblTime" type="text" />
-					</div>
-				</div>
-				
-			</div> -->
 			
-			<div id= "game" class="gameBoard" style="display: none;">
-
-				<div class="gameCanvas" >
-					<canvas id="canvas" height="600" width="800" style="margin-left: 780px;"></canvas>
-				</div>
-			
-				<div class="rightSettings">
-					<h2>Time & Score:</h2>
-					<div id="score">
-						<label for="lblScore">SCORE:</label>
+		<div id= "game" class="gameBoard" style="display: none;">
+			<table style="width:100%" >
+				<tr>
+					  <th class="fluid">
+					  <h1 align = "center">Current State:</h1>
+					  <br>
+					  <br>
+					  <div id="score" align="center">
+						<h2>Score: </h2>
 						<input id="lblScore" type="text" />
-					</div>
-					<div id="time">
-						<label for="lblTime">TIME:</label>
-						<input id="lblTime" type="text" />
-					</div>
-					<h2>Your settings:</h2>
-					<br>
-					<br>
-					<div id = chosenSettings>
-						<h3>Number of monsters: </h3>
-						<!-- <label id="numMons"></label> -->
-						<!-- <script>
-							var monsters = document.getElementById("chosenSettings").children[0];
-							var text = document.createTextNode();
-							
-							paragraph.appendChild(text);
-						</script> -->
-					</div>
-					
-				</div>
-			  
-			</div>
+					  </div>
+						<div id="time" align="center">
+							<h2>Time: </h2>
+							<input id="lblTime" type="text" />
+						</div>
+						<div id="lives" align="center">
+							<h2>Lives: </h2>
+							<br>
+							<table align="center">
+								<th><img src="images1/heart.gif" width="100" height="100" ></th>
+								<th><img src="images1/heart.gif" width="100" height="100"></th>
+								<th><img src="images1/heart.gif" width="100" height="100"></th>
+								<th><img src="images1/heart.gif" width="100" height="100"></th>
+								<th><img src="images1/heart.gif" width="100" height="100"></th>
+							</table>
+						</div>
+						<br>
+						<input type="button" id="startOver" class="example_b" name="startOver" align="center" value="Start new game" onclick="settingsWindow()">  
+					</th>
+					  <th class="fixed" id = "canvasParent" >
+					  	<div class="gameCanvas" >
+							<canvas id="canvas" width="600" height="600" style="border:1px solid"></canvas>
+						</div>	
+					</th>
+					  <th class="fluid">
+						<h1 align="center" >Your Settings:</h1> 
+						<br>
+						<div id = chosenSettings>
+							<div align ="left">
+								<h2>Time to Play:</h2>
+								<input id="timeHTML" type="text" >
+							</div>
+							<br>
+							<div align ="left">
+								<h2>Number of monsters:</h2>
+								<input id="monsterHtml" type="text" >
+							</div>
+							<br>
+							<div align ="left">
+								<h2>Number of Balls:</h2>
+								<input id="ballsHtml" type="text">
+							</div>
+							<br>
+							<div align ="left">
+								<h2>Ball's colors:</h2>
+								<br>
+								<h3>5 Points color:<span id="5pt" class="dot"> </span></h3>
+								<br>
+								<h3>15 Points color:    <span id="15pt" class="dot"></span></h3>
+								<br>
+								<h3>25 Points color:    <span id="25pt" class="dot"></span></h3>
+							</div>
+						</div>
+					</th>
+				</tr>
+			</table>
+		</div>
 
 		<div class = "container">
 			<form id = "settings" action="" method="post" name="settings" style="display: none; width: auto;">
@@ -164,8 +164,8 @@
 					<br>
 					<div>
 						<h3 style ="float: left;";>Select time in seconds: </h3>
-						<span id="rangeValue1">60</span>
-						<Input class="range" type="range" value="60" min="60" max="1000" onChange="rangeSlide1(this.value)" onmousemove="rangeSlide1(this.value)">
+						<span id="rangeValue1" onchange="changeTime(this.value)">60</span>
+						<Input id="timeRange" class="range" type="range" value="60" min="60" max="1000" onchange="rangeValue1(this.value)" onmousemove="rangeSlide1(this.value)">
 					</div>
 				</br>
 				</br>
@@ -173,7 +173,7 @@
 					<div>
 						<h3 style ="float: left;";>Select number of monsters: </h3>
 						<span id="rangeValue2">1</span>
-						<Input class="range" type="range" value="1" min="1" max="4" onChange="rangeSlide2(this.value)" onmousemove="rangeSlide2(this.value)">
+						<Input class="range" type="range" value="1" min="1" max="4" required onchange="rangeSlide2(this.value)" onmousemove="rangeSlide2(this.value)">
 					</div>
 				</br>
 				</br>
@@ -181,7 +181,7 @@
 					<div>
 						<h3 style ="float: left;";>Select number of balls: </h3>
 						<span id="rangeValue3">50</span>
-						<Input class="range" type="range" value="50" min="50" max="90" onChange="rangeSlide3(this.value)" onmousemove="rangeSlide3(this.value)">
+						<Input class="range" type="range" value="50" min="50" max="90" required onChange="cahngeRange(this.value)" onmousemove="rangeSlide3(this.value)">
 					</div>
 				</div>
 				<script type="text/javascript">
@@ -226,7 +226,7 @@
 				<br>
 				<div id="submitButtons" align = "center">
 					<button type="submit" class="example_b" onclick="checkSetting()" value="Play" >Play</button> 
-					<button type="button" class="example_b" onclick="randomSettings()" value="Random" >Random</button> 
+					<button id="randomSet" type="button" class="example_b" onclick="randomSettings()" value="Random" >Random</button> 
 				</div>
 			</form>
 		
@@ -273,3 +273,12 @@
 	
 	</footer> -->
 </html>
+
+<!-- <script>
+	window.addEventListener("keydown", function(e) {
+		// space and arrow keys
+		if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+			e.preventDefault();
+		}
+	}, false);
+</script> -->

@@ -1,5 +1,5 @@
 body{
-    zoom: 0.85;
+    zoom: 0.60;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: absolute;
@@ -9,15 +9,9 @@ body{
     padding-top: 20px;
 }
 
-h1 {
-    font-family: "Lucida", "Brush Script MT", cursive;
-    border-radius: 20px;
-    font-size:  40px;
-}
 .font1{
     font-family: "Lucida", "Brush Script MT", monospace;
     font-size:  50px;
-
 }
 
 h3 {
@@ -30,6 +24,12 @@ h2 {
     font-family: "Lucida", cursive, sans-serif;
     border-radius: 20px;
     font-size:  30px;
+}
+
+h1 {
+    font-family: "Lucida", cursive, sans-serif;
+    border-radius: 20px;
+    font-size:  40px;
 }
 ul {
     list-style-type: none;
