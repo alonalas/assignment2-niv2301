@@ -3,6 +3,8 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="stylesheet" type="text/css" href="settings.css"/>
+		<link rel="stylesheet" type="text/css" href="gameDes.css" />
+
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -52,24 +54,77 @@
 			<div id = "imageLogo" align = "center">
 				<img src="images1/title.png">
 			</div>
-			
-			
 		</header>
-
-		<div class="container">
-
-			<div id="game" style="display: none;">
-				<canvas id="canvas" height="600" width="600"></canvas>
-				<div id="score">
-					<label for="lblScore">SCORE:</label>
-					<input id="lblScore" type="text" />
-				</div>
+			<!-- <div class="parent" id="game" align="left" style="display: none;">
+				<canvas id="canvas"></canvas>
+			</div>
+			<div class="element" align="right">
+				<h3>show here settings</h3>
 				<div id="time">
 					<label for="lblTime">TIME:</label>
 					<input id="lblTime" type="text" />
 				</div>
+				<div id="score">
+					<label for="lblScore">SCORE:</label>
+					<input id="lblScore" type="text" />
+				</div>
+			</div> -->
+
+			<!-- <div class="gameBoard">
+
+				<div class="gameChild" id = "game">
+				<div class="gameChild">
+					<canvas id="canvas" height="600" width="600"></canvas>
+				</div>
+				
+				<div class="gameChild">
+					<div id="score">
+						<label for="lblScore">SCORE:</label>
+						<input id="lblScore" type="text" />
+					</div>
+					<div id="time">
+						<label for="lblTime">TIME:</label>
+						<input id="lblTime" type="text" />
+					</div>
+				</div>
+				
+			</div> -->
+			
+			<div id= "game" class="gameBoard" style="display: none;">
+
+				<div class="gameCanvas" >
+					<canvas id="canvas" height="600" width="800" style="margin-left: 780px;"></canvas>
+				</div>
+			
+				<div class="rightSettings">
+					<h2>Time & Score:</h2>
+					<div id="score">
+						<label for="lblScore">SCORE:</label>
+						<input id="lblScore" type="text" />
+					</div>
+					<div id="time">
+						<label for="lblTime">TIME:</label>
+						<input id="lblTime" type="text" />
+					</div>
+					<h2>Your settings:</h2>
+					<br>
+					<br>
+					<div id = chosenSettings>
+						<h3>Number of monsters: </h3>
+						<!-- <label id="numMons"></label> -->
+						<!-- <script>
+							var monsters = document.getElementById("chosenSettings").children[0];
+							var text = document.createTextNode();
+							
+							paragraph.appendChild(text);
+						</script> -->
+					</div>
+					
+				</div>
+			  
 			</div>
 
+		<div class = "container">
 			<form id = "settings" action="" method="post" name="settings" style="display: none; width: auto;">
 				<h2 align="center"> Game Settings</h2>
 				<br>
@@ -78,8 +133,8 @@
 						<h3 align="center"> select key directions: </h3>
 						<br>
 						<div>
-						<img for="up" src="images1/up.png" style= "align-items: center;">
-						<br>
+							<img for="up" src="images1/up.png" style= "align-items: center;">
+							<br>
 							<output id="upB">38</output>
 							<input maxlength="1" type="text" id="upButton" name="upButton" class="input"
 							onkeydown="updateKey(event,'up')"  /> 
@@ -112,7 +167,6 @@
 						<span id="rangeValue1">60</span>
 						<Input class="range" type="range" value="60" min="60" max="1000" onChange="rangeSlide1(this.value)" onmousemove="rangeSlide1(this.value)">
 					</div>
-					
 				</br>
 				</br>
 				</br>
@@ -122,8 +176,8 @@
 						<Input class="range" type="range" value="1" min="1" max="4" onChange="rangeSlide2(this.value)" onmousemove="rangeSlide2(this.value)">
 					</div>
 				</br>
-			</br>
-			</br>
+				</br>
+				</br>
 					<div>
 						<h3 style ="float: left;";>Select number of balls: </h3>
 						<span id="rangeValue3">50</span>
@@ -141,8 +195,6 @@
 						document.getElementById('rangeValue3').innerHTML = value;
 					}
 				</script>
-
-
 				<br>
 				<br>
 				<h3 align="center">Choose colors of balls: </h3>
@@ -155,21 +207,18 @@
 					</div>
 					<br>
 					<br>
-
 					<div >
 						<h4 style ="float: left; width: 33%;";>15 points</h4>
 							<input id="15color" type='color' value='#2b00ff' class='colour' style="float: left;width: 33%;">
 					</div>
 					<br>
 					<br>
-
 					<div>
 						<h4 style ="float: left; width: 33%;";>25 points</h4>
 						<div class="color_front" id="ball3">
 							<input id="25color" type='color' value='#04ff00' class='colour' style="float: left;width: 33%;">
 						</div>
 					</div>
-
 				</div>
 				<br>
 				<br>
@@ -180,51 +229,47 @@
 					<button type="button" class="example_b" onclick="randomSettings()" value="Random" >Random</button> 
 				</div>
 			</form>
-	
-			
-			<form id="signup" action="" method="post" name="signup" style="display: none;">
-				<div class="header">
-					<h3>Sign Up</h3>
-					<p>Please fill out this form</p>
-				</div>
-				<div class="inputs">
-				  <input type="text" id="userName" name="userName" placeholder="UserName" autofocus>
-				  <input type="text" id="fullName" name="fullName" placeholder="Full Name" autofocus>
-				  <input type="text" id="email" name="email" placeholder="Email" autofocus>
-				  <input type="password" id="password" name="password" placeholder="Password" autofocus>
-				  <input type="date" placeholder="Date" id="datepicker" name="datepicker" autofocus>
-				  <input class="submit" type="submit" value="SUBMIT" id="submit">
+		
+		<form id="signup" action="" method="post" name="signup" style="display: none;">
+			<div class="header">
+				<h3>Sign Up</h3>
+				<p>Please fill out this form</p>
 			</div>
-
-			</form>
-
-			<form id="login" style="display: none;">
-				<div class="header">
-					<h3>Login</h3>
-					<p>Please fill out this form</p>
-				</div>
-				<div class="inputs">
-				  <input type="Text" id="logUsername" name="logUsername" placeholder="Username" autofocus />
-					<input type="password" id="logPassword" name="logPassword" placeholder="Password" />	
-					
-					<a id="submit" onclick="authenticate()" href="#">LOGIN</a>
-				</div>
-			</form>
-			
-			<div id="content" style="width:30vw; margin: auto;"> 
-				<input type="button" id="reg_btn" name="reg_btn" onclick="register()" value="Register">
-				<input type="button" onclick="login()" id="log_btn" name="log_btn" value="Login">
+			<div class="inputs">
+				<input type="text" id="userName" name="userName" placeholder="UserName" autofocus>
+				<input type="text" id="fullName" name="fullName" placeholder="Full Name" autofocus>
+				<input type="text" id="email" name="email" placeholder="Email" autofocus>
+				<input type="password" id="password" name="password" placeholder="Password" autofocus>
+				<input type="date" placeholder="Date" id="datepicker" name="datepicker" autofocus>
+				<input class="submit" type="submit" value="SUBMIT" id="submit">
 			</div>
+		</form>
 
-
+		<form id="login" style="display: none;">
+			<div class="header">
+				<h3>Login</h3>
+				<p>Please fill out this form</p>
+			</div>
+			<div class="inputs">
+				<input type="Text" id="logUsername" name="logUsername" placeholder="Username" autofocus />
+				<input type="password" id="logPassword" name="logPassword" placeholder="Password" />	
+				
+				<a id="submit" onclick="authenticate()" href="#">LOGIN</a>
+			</div>
+		</form>
+		
+		<div id="content" style="width:30vw; margin: auto;"> 
+			<input type="button" id="reg_btn" name="reg_btn" onclick="register()" value="Register">
+			<input type="button" onclick="login()" id="log_btn" name="log_btn" value="Login">
 		</div>
+	</div>
 
 	</body>
 	<br>
 	<br>
-	<footer id="footer">
+	<!-- <footer id="footer">
 		<p>PacMan</p>
 		<p>For more information: nivq@post.bgu.ac.il, alonalas@post.bgu.ac.il</p>
 	
-	</footer>
+	</footer> -->
 </html>

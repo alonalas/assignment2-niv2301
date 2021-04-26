@@ -7,3 +7,4 @@ $(".reg_btn").click(function() {
     $(".logout").hide()
 
 });
+

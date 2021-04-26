@@ -25,6 +25,7 @@ function game(numBalls1,time1,monsters1, upKey1, downKey1, rightKey1, leftKey1) 
     document.getElementById("log_tab").style.display = "none";
     document.getElementById("logout").style.display = "block";
     document.getElementById("settings").style.display = "none";
+	//openCanvas();
 
 	numBalls = numBalls1;
 	time = time1;
@@ -38,10 +39,11 @@ function game(numBalls1,time1,monsters1, upKey1, downKey1, rightKey1, leftKey1) 
 }
 
 
-
 $(document).ready(function() {
 	context = canvas.getContext("2d");
 	Start();
+
+	// $("#numMons").text(monsters);
 });
 
 function Start() {

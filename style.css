@@ -4,6 +4,9 @@ body{
     background-attachment: fixed;
     background-position: absolute;
     background-size: cover;
+    background-image: url(http://kreativo.se/backlogin.jpg);
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    padding-top: 20px;
 }
 
 h1 {
@@ -15,7 +18,7 @@ h1 {
     font-family: "Lucida", "Brush Script MT", monospace;
     font-size:  50px;
 
-  }
+}
 
 h3 {
     font-family: "Lucida", cursive, sans-serif;
@@ -77,11 +80,7 @@ li a:hover {
 }
 
 
-body {
-    background-image: url(http://kreativo.se/backlogin.jpg);
-    font-family: "Helvetica Neue", Helvetica, Arial;
-    padding-top: 20px;
-}
+
 
 .container {
     width: 406px;
@@ -326,7 +325,7 @@ input:-moz-placeholder {
 }
 
 
-.content
+/* .content */
 
 /* datepicker shit */
 .ui-datepicker {

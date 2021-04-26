@@ -5,7 +5,7 @@ email: "k@p.k",
 password: "k",
 datepicker:01/01/1990}];
 localStorage.setItem("k",JSON.stringify(userArray));
-document.getElementById("settings").style.display = "block";//remove from here
+
 function register() {
     document.getElementById("signup").style.display = "block";
     document.getElementById("login").style.display = "none";
@@ -13,7 +13,7 @@ function register() {
     document.getElementById("log_btn").style.display = "none";
     document.getElementById("reg_btn").style.display = "none";
     document.getElementById("logout").style.display = "none";
-    document.getElementById("settings").style.display = "block";//chnge to none
+    document.getElementById("settings").style.display = "none";//chnge to none
 
 }
 
@@ -24,7 +24,7 @@ function login() {
     document.getElementById("log_btn").style.display = "none";
     document.getElementById("reg_btn").style.display = "none";
     document.getElementById("logout").style.display = "none";
-    document.getElementById("settings").style.display = "block";//chnge to none
+    document.getElementById("settings").style.display = "none";//chnge to none
 }
 function logout() {
     currentUser="";
@@ -37,7 +37,7 @@ function logout() {
     document.getElementById("reg_tab").style.display = "block";
     document.getElementById("log_tab").style.display = "block";
     document.getElementById("logout").style.display = "none";
-    document.getElementById("settings").style.display = "block";//chnge to none
+    document.getElementById("settings").style.display = "none";//chnge to none
 
 }
 
