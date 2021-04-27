@@ -14,10 +14,13 @@ var monsters;
 var fivePtsBall;
 var fifteenPtsBall;
 var twentyFivePtsBall;
+var movement;
 var upKey = 38;
 var downKey = 40;
 var rightKey = 39;
 var leftKey = 37;
+
+var pacman;
 
 function game(upKey1, downKey1, rightKey1, leftKey1) {
 
@@ -42,7 +45,7 @@ function game(upKey1, downKey1, rightKey1, leftKey1) {
 	downKey = downKey1;
 	rightKey = rightKey1;
 	leftKey = leftKey1;
-
+	movement="right";
 	Start();
 
 }
@@ -283,27 +286,26 @@ function Draw(movement) {
 			if (board[i][j] == 10) { //draw the pacmam
 				switch(movement){
 					case "up":
+						pacman=new Image();
+						pacman.src= "images1/up.png";
+						context.drawImage(pacman, center.x-30, center.y-30, 60, 60);
+						break;
+						
 					case "down":
+						pacman=new Image();
+						pacman.src= "images1/down.png";
+						context.drawImage(pacman, center.x-30, center.y-30, 60, 60);
+						break;
 					case "left":
-						context.beginPath();
-						context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-						context.lineTo(center.x, center.y);
-						context.fillStyle = pac_color; //color
-						context.fill();
-						context.beginPath();
-						context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-						context.fillStyle = "black"; //color
-						context.fill();
+						pacman=new Image();
+						pacman.src= "images1/left.png";	
+						context.drawImage(pacman, center.x-30, center.y-30, 60, 60);
+						break;
 					case "right":
-						context.beginPath();
-						context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-						context.lineTo(center.x, center.y);
-						context.fillStyle = pac_color; //color
-						context.fill();
-						context.beginPath();
-						context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-						context.fillStyle = "black"; //color
-						context.fill();
+						pacman=new Image();
+						pacman.src= "images1/right.png";
+						context.drawImage(pacman, center.x-30, center.y-30, 60, 60);
+						break;
 				}
 			} 
 			else if (board[i][j] == 1) { //draw food
@@ -360,11 +362,11 @@ function updateLives(){
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
-	var movement;
+	
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
-			movemet = "up";
+			movement = "up";
 		}
 	}
 	if (x == 2) {
@@ -410,69 +412,15 @@ function UpdatePosition() {
 		///check if to do this with medicineInterval also
 		window.alert("Game completed");
 	} else {
+		//window.clearInterval(interval);
+
 		window.clearInterval(madicineInterval);
 		Draw(movement);
 	}
 }
 
-function drawPac(){
-<canvas id="pacman_canvas" height="200" width="200"></canvas>
-// Get things rolling once the DOM loads
-document.addEventListener('DOMContentLoaded', function() {
-  var canvas = document.getElementById('pacman_canvas');
-  var context = canvas.getContext('2d');
-   
-  // dir is the offset that will be added to pctOpen on every interval
-  var dir = -10, pctOpen = 100;
-   
-  function drawPacman(pctOpen) {
-    // Convert percent open to a float
-    var fltOpen = pctOpen / 100;
- 
-    // Clear the canvas to draw the next part of the animation
-    context.clearRect(0, 0, canvas.width, canvas.height);
-     
-    // An arc which stops at a specific percent to allow for the
-    // open mouth to be drawn
-    context.beginPath();
-    context.arc(100, 100, 100, (fltOpen * 0.2) * Math.PI, (2 - fltOpen * 0.2) * Math.PI);
- 
-    // The line leading back to the center and then closing the
-    // path to finish the open mouth.
-    context.lineTo(100, 100);
-    context.closePath();
- 
-    // Fill pacman's head yellow
-    context.fillStyle = "#FF0";
-    context.fill();
-     
-    // Outline the head
-    context.strokeStyle = '#000';
-    context.stroke();
- 
-    // A circle for the eye
-    var angle = Math.PI * (0.3 + fltOpen * 0.2),
-        xDelta = 50 * Math.cos(angle),
-        yDelta = 50 * Math.sin(angle);
-    context.beginPath();
-    context.arc(100 + xDelta, 100 - yDelta, 10, 0, 2 * Math.PI);
-    context.fillStyle = "#000";
-    context.fill();
-     
-    // Outline the eye
-    context.strokeStyle = '#FFF';
-    context.stroke();
-  }
-   
-  // update pacman every 0.1 seconds
-  setInterval(function() {
-    drawPacman(pctOpen += dir);
- 
-    // when the mouth reaches its limit reverse the direction
-    if (pctOpen % 100 == 0) {
-      dir = -dir;
-    }
-  }, 100);
-});
-
-}
+window.addEventListener("keydown",function (e) {
+	if ([32,37,38,39,40].indexOf(e.keyCode) > -1 ){
+		e.preventDefault();
+	}
+},false); 	

@@ -28,6 +28,7 @@ function login() {
 }
 function logout() {
     currentUser="";
+    $("#footer").css("position", "absolute");
     document.getElementById("current_user").innerHTML = "Hello";
     document.getElementById("signup").style.display = "none";
     document.getElementById("login").style.display = "none";
@@ -43,6 +44,7 @@ function logout() {
 
 function settingsWindow() {
 
+    $("#footer").css("position", "relative");
     document.getElementById("signup").style.display = "none";
     document.getElementById("login").style.display = "none";
     document.getElementById("game").style.display = "none";
@@ -58,15 +60,15 @@ function settingsWindow() {
 
 
 function create_user() {
-    let userName = document.getElementById("userName").value;
-    let fullName = document.getElementById("fullName").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let date_picker = document.getElementById("datepicker").value;
+    let userNamee = document.getElementById("userName").value;
+    let fullNamee = document.getElementById("fullName").value;
+    let emaill = document.getElementById("email").value;
+    let passwordd = document.getElementById("password").value;
+    let date_pickerr = document.getElementById("datepicker").value;
 
 
     //check if username exists
-    let check_user=localStorage.getItem(userName)
+    let check_user=localStorage.getItem(userNamee)
     if(check_user!=null){
         let user_string=JSON.parse(check_user)
         let name_user=user_string[0]["userName"]
@@ -79,9 +81,13 @@ function create_user() {
     }
 
 
-
-    let user_detail = [userName,fullName,email, password,date_picker]
-    localStorage.setItem(userName,user_detail);
+    // var userInsert = [{userName: userName,
+    // fullName: "Admin",
+    // email: "k@p.k",
+    // password: "k",
+    // datepicker:01/01/1990}];
+    // let user_detail = [{"userNmae: " + userName.value,"fullNmae: " + fullName,"email: " + email,"password: " + password,"datepicker: " + date_picker}]
+    // localStorage.setItem(userName,user_detail);
     alert("Account was created!")
     //document.getElementById("current_user").innerHTML = "Hello, " + userName;
     login();
