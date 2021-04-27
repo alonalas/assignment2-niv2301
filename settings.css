@@ -61,17 +61,10 @@ input[type=color] {
     transition: all 0.4s ease 0s;
   }
 
-  table {
+table {
     border-collapse: collapse;
+    table-layout: fixed
 }
 th, td {
-    border: solid 1px #CCC;
     padding: 10px;
-}
-.fixed{
-    max-width: 600px;
-    min-width: 1000px;
-}
-.fluid {
-        width: 50%;
 }

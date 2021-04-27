@@ -6,6 +6,8 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var madicineInterval;
+var lifeArray;
 var numBalls;
 var time;
 var monsters;
@@ -45,14 +47,9 @@ function game(upKey1, downKey1, rightKey1, leftKey1) {
 
 }
 
-
-
-
 $(document).ready(function() {
 	context = canvas.getContext("2d");
 	Start();
-
-	// $("#numMons").text(monsters);
 });
 
 
@@ -71,6 +68,8 @@ $(document).ready(function() {
 
 function Start() {
 	board = new Array();
+	lifeArray = new Array(1,1,1,1,1);
+	updateLives();
 	score = 0;
 	pac_color = "yellow";
 	var cnt = 100;
@@ -195,7 +194,35 @@ function Start() {
 		false
 	);
 	interval = setInterval(UpdatePosition, 250);
+	madicineInterval = setInterval(dropMadicine, 3000);
 }
+
+function addLife() {
+	if (lifeArray[4] == 1)
+		return;
+	for (var i = 0; i < 5; i++) {
+		if (lifeArray[i]==0){
+			lifeArray[i] = 1;
+			return;
+		}
+	}
+}
+
+function dropMadicine() {
+	var emptyCell = findRandomEmptyCell(board);
+	//delete medicine
+	for (var i = 0; i < 10; i++) {
+		for (var j = 0; j < 10; j++) {
+			if (board[i][j]==6){
+				board[i][j] = 0;///delete madicine
+				break;
+			}
+		}
+	}	
+	board[emptyCell[0]][emptyCell[1]] = 6; // add one medicine
+	
+}
+
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
@@ -232,10 +259,10 @@ function GetKeyPressed() {
 3- large ball
 4- wall
 5- monster
-6- medicine
+6- madicine
 10- pacman
 */
-function Draw() {
+function Draw(movement) {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
@@ -254,16 +281,32 @@ function Draw() {
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
 			if (board[i][j] == 10) { //draw the pacmam
-				context.beginPath();
-				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-				context.lineTo(center.x, center.y);
-				context.fillStyle = pac_color; //color
-				context.fill();
-				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
-				context.fill();
-			} else if (board[i][j] == 1) { //draw food
+				switch(movement){
+					case "up":
+					case "down":
+					case "left":
+						context.beginPath();
+						context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+						context.lineTo(center.x, center.y);
+						context.fillStyle = pac_color; //color
+						context.fill();
+						context.beginPath();
+						context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+						context.fillStyle = "black"; //color
+						context.fill();
+					case "right":
+						context.beginPath();
+						context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+						context.lineTo(center.x, center.y);
+						context.fillStyle = pac_color; //color
+						context.fill();
+						context.beginPath();
+						context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+						context.fillStyle = "black"; //color
+						context.fill();
+				}
+			} 
+			else if (board[i][j] == 1) { //draw food
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
 				context.fillStyle = fivePtsBall; //color
@@ -285,32 +328,61 @@ function Draw() {
 				context.rect(center.x - 30, center.y - 30, 60, 60);
 				context.fillStyle = "grey"; //color
 				context.fill();
+			} else if (board[i][j] == 6) { //draw madicine
+				// context.beginPath();
+				madicine=new Image();
+				madicine.src= "images1/madicine.png";
+				madicine.style.width="50";
+				madicine.style.height="50";
+				context.drawImage(madicine, center.x-30, center.y-30, 50, 50);
+				// context.fillStyle = "grey"; //color
+				// context.fill();
 			}
 		}
 	}
 }
 
+function updateLives(){ 
+	for (var i=0; i<5; i++) {
+		if( lifeArray[i]==1){
+			$("#life"+i.toString()).css("display", "block");
+		}
+		else {
+			$("#life"+i.toString()).css("display", "none");
+		}
+	}
+}
+//up-1
+//down-2
+//left-3
+//right-4
+
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
+	var movement;
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
+			movemet = "up";
 		}
 	}
 	if (x == 2) {
 		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
+			movement = "down";
 		}
 	}
 	if (x == 3) {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != 4) {
 			shape.i--;
+			movement = "left";
 		}
 	}
 	if (x == 4) {
 		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
+			movement = "right";
 		}
 	}
 	if (board[shape.i][shape.j] == 1) {
@@ -322,6 +394,11 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] == 3) {
 		score+=25;
 	}
+	if (board[shape.i][shape.j] == 6) {
+		addLife();		//update life table
+		updateLives()
+		//display life amount 
+	}
 	board[shape.i][shape.j] = 10;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
@@ -330,8 +407,72 @@ function UpdatePosition() {
 	}
 	if (score == 50) {
 		window.clearInterval(interval);
+		///check if to do this with medicineInterval also
 		window.alert("Game completed");
 	} else {
-		Draw();
+		window.clearInterval(madicineInterval);
+		Draw(movement);
 	}
+}
+
+function drawPac(){
+<canvas id="pacman_canvas" height="200" width="200"></canvas>
+// Get things rolling once the DOM loads
+document.addEventListener('DOMContentLoaded', function() {
+  var canvas = document.getElementById('pacman_canvas');
+  var context = canvas.getContext('2d');
+   
+  // dir is the offset that will be added to pctOpen on every interval
+  var dir = -10, pctOpen = 100;
+   
+  function drawPacman(pctOpen) {
+    // Convert percent open to a float
+    var fltOpen = pctOpen / 100;
+ 
+    // Clear the canvas to draw the next part of the animation
+    context.clearRect(0, 0, canvas.width, canvas.height);
+     
+    // An arc which stops at a specific percent to allow for the
+    // open mouth to be drawn
+    context.beginPath();
+    context.arc(100, 100, 100, (fltOpen * 0.2) * Math.PI, (2 - fltOpen * 0.2) * Math.PI);
+ 
+    // The line leading back to the center and then closing the
+    // path to finish the open mouth.
+    context.lineTo(100, 100);
+    context.closePath();
+ 
+    // Fill pacman's head yellow
+    context.fillStyle = "#FF0";
+    context.fill();
+     
+    // Outline the head
+    context.strokeStyle = '#000';
+    context.stroke();
+ 
+    // A circle for the eye
+    var angle = Math.PI * (0.3 + fltOpen * 0.2),
+        xDelta = 50 * Math.cos(angle),
+        yDelta = 50 * Math.sin(angle);
+    context.beginPath();
+    context.arc(100 + xDelta, 100 - yDelta, 10, 0, 2 * Math.PI);
+    context.fillStyle = "#000";
+    context.fill();
+     
+    // Outline the eye
+    context.strokeStyle = '#FFF';
+    context.stroke();
+  }
+   
+  // update pacman every 0.1 seconds
+  setInterval(function() {
+    drawPacman(pctOpen += dir);
+ 
+    // when the mouth reaches its limit reverse the direction
+    if (pctOpen % 100 == 0) {
+      dir = -dir;
+    }
+  }, 100);
+});
+
 }
